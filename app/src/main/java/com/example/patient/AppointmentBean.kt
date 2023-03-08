@@ -53,6 +53,7 @@ class AppointmentBean(c: Context) {
 	
 	    fun isListAppointmentError(): Boolean {
 	 	  errors.clear()
+		  //if statement
 	      return errors.size > 0
 	 }
 	 	    
@@ -116,17 +117,17 @@ class AppointmentBean(c: Context) {
 	        return errors.size > 0
 	    }
 	    
-	    suspend fun addPatientattendsAppointment() {
+	    fun addPatientattendsAppointment() {
 	         model.addPatientattendsAppointment(appointmentId, patientId)
 	         resetData()
 	    }
 	    
-    fun isRemovePatientattendsAppointmentError(): Boolean {
+    	    fun isRemovePatientattendsAppointmentError(): Boolean {
 	        errors.clear()
 	        return errors.size > 0
 	    }
 	    
-	    suspend fun removePatientattendsAppointment() {
+	    fun removePatientattendsAppointment() {
 	         model.removePatientattendsAppointment(appointmentId, patientId)
 	         resetData()
 	    }
