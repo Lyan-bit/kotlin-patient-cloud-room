@@ -48,9 +48,9 @@ class EditAppointmentFragment : Fragment(), View.OnClickListener, AdapterView.On
 		appointmentBean = AppointmentBean(myContext)
 		editAppointmentSpinner = root.findViewById(R.id.editAppointmentSpinner)
 
-		model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { Appointmentid ->
-			Appointmentid.let {
-				allAppointmentappointmentIds = Appointmentid
+		model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { appointmentId ->
+			appointmentId.let {
+				allAppointmentappointmentIds = appointmentId
 				val editAppointmentAdapter =
 					ArrayAdapter(myContext, android.R.layout.simple_spinner_item, allAppointmentappointmentIds)
 				editAppointmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
