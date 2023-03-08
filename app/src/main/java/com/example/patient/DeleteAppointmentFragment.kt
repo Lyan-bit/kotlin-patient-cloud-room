@@ -49,9 +49,9 @@ class DeleteAppointmentFragment : Fragment(), View.OnClickListener, AdapterView.
 		appointmentIdTextField = root.findViewById(R.id.deleteAppointmentappointmentIdField)	    
 		deleteAppointmentSpinner = root.findViewById(R.id.deleteAppointmentSpinner)
 
-		model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { Appointmentid ->
-					Appointmentid.let {
-						allAppointmentappointmentIds = Appointmentid
+		model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { appointmentId ->
+					appointmentId.let {
+						allAppointmentappointmentIds = appointmentId
 						val deleteAppointmentAdapter =
 						ArrayAdapter(myContext, android.R.layout.simple_spinner_item, allAppointmentappointmentIds)
 						deleteAppointmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
