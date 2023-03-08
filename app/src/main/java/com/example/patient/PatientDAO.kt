@@ -155,6 +155,7 @@ class PatientDAO {
                 val ex: Patient = es[i]
                 val jx = writeJSON(ex)
                 if (jx == null) {
+                    //jx
                 } else {
                     try {
                         result.put(jx)
