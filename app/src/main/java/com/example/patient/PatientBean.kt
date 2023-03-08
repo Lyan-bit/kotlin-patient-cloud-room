@@ -1,7 +1,6 @@
 package com.example.patient
 
 import android.content.Context
-import java.lang.Exception
 
 class PatientBean(c: Context) {
 
@@ -12,6 +11,7 @@ class PatientBean(c: Context) {
     private var appointmentId = ""
 
     private var errors = ArrayList<String>()
+    private var checkParameter = "is not exist"
 
     fun setPatientId(patientIdx: String) {
 	 patientId = patientIdx
@@ -74,7 +74,7 @@ class PatientBean(c: Context) {
        errors.clear()
 			
 			if (!allPatientpatientIds.contains(patientId)) {
-				errors.add("The patientId is not exist")
+				errors.add("patientId" + checkParameter)
 		    }
           if (patientId != "") {
 	//validate
@@ -106,7 +106,7 @@ class PatientBean(c: Context) {
    fun isDeletePatientError(allPatientpatientIds: List<String>): Boolean {
         errors.clear()
 			 if (!allPatientpatientIds.contains(patientId)) {
-			    errors.add("The patientId is not exist")
+			    errors.add("patientId" + checkParameter)
         }
         return errors.size > 0
 		}    
@@ -115,7 +115,7 @@ class PatientBean(c: Context) {
 	fun isSearchPatientIdError(allPatientIds: List<String>): Boolean {
     	   errors.clear()
    	       if (!allPatientIds.contains(patientId)) {
-    	       errors.add("The patientId is not exist")
+    	       errors.add("patientId" + checkParameter)
     	   }
            return errors.size > 0
     	}
