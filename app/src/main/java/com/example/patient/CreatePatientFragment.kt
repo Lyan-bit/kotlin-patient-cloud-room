@@ -80,12 +80,12 @@ class CreatePatientFragment : Fragment(), View.OnClickListener {
 				createPatientOK()
 			}
 			R.id.crudPatientCancel-> {
-				deletePatientCancel()
+				createPatientCancel()
 			}
 		}
 	}
 
-	private fun deletePatientOK () {
+	private fun createPatientOK () {
 		patientIdData = patientIdTextField.text.toString()
 		patientBean.setPatientId(patientIdData)
 		nameData = nameTextField.text.toString()
