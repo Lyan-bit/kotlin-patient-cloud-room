@@ -29,11 +29,6 @@ class ModelFacade private constructor(context: Context) {
         }
     }
     
-	    /* This metatype code requires OclType.java, OclAttribute.java, OclOperation.java */
-	    fun initialiseOclTypes() {	    val patientOclType: OclType = OclType.createByPKOclType("Patient")
-	        patientOclType.setMetatype(Patient::class.java)
-    }
-
     val allAppointments: LiveData<List<AppointmentEntity>> = repository.allAppointments.asLiveData()
 
     val allAppointmentAppointmentIds: LiveData<List<String>> = repository.allAppointmentappointmentIds.asLiveData()
