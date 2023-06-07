@@ -88,10 +88,10 @@ class AddPatientattendsAppointmentFragment : Fragment() , View.OnClickListener, 
 
     override fun onItemSelected(parent: AdapterView<*>, v: View?, position: Int, id: Long) {
         if (parent === patientIdSpinner) {
-            patientIdTextField.setText(allPatientpatientId.get(position))
+            patientIdTextField.setText(allPatientpatientId[(position])
         }
         if (parent ==appointmentIdSpinner) {
-            appointmentIdTextField.setText(allAppointmentappointmentId.get(position))
+            appointmentIdTextField.setText(allAppointmentappointmentId[position])
         }
     }
 
