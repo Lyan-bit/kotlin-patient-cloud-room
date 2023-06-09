@@ -10,7 +10,7 @@ import java.util.ArrayList
 class ModelFacade private constructor(context: Context) {
 
     private var cdb: FirebaseDB = FirebaseDB.getInstance()
-    private var fileSystem: FileAccessor
+    private val fileSystem: FileAccessor by lazy { FileAccessor(context) }
 
 
     private var currentPatient: PatientVO? = null
@@ -18,7 +18,6 @@ class ModelFacade private constructor(context: Context) {
 
     init {
     	//init
-        fileSystem = FileAccessor(context)
     }
 
     companion object {
@@ -28,7 +27,7 @@ class ModelFacade private constructor(context: Context) {
             return instance ?: ModelFacade(context)
         }
     }
-    
+
     val allAppointments: LiveData<List<AppointmentEntity>> = repository.allAppointments.asLiveData()
 
     val allAppointmentAppointmentIds: LiveData<List<String>> = repository.allAppointmentappointmentIds.asLiveData()
@@ -51,8 +50,6 @@ class ModelFacade private constructor(context: Context) {
             val itemx = Appointment.createByPKAppointment(value)
             if (appointment.isNotEmpty()) {
             itemx.appointmentId = appointment[0].appointmentId
-            }
-            if (appointment.isNotEmpty()) {
             itemx.code = appointment[0].code
             }
             itemx
@@ -64,14 +61,14 @@ class ModelFacade private constructor(context: Context) {
 	}
 				    
     fun editPatient(x: PatientVO) {
-		var obj = getPatientByPK(x.getPatientId())
+		var obj = getPatientByPK(x.patientId)
 		if (obj == null) {
-			obj = Patient.createByPKPatient(x.getPatientId())
+			obj = Patient.createByPKPatient(x.patientId)
 	    }
 			
-		  obj.patientId = x.getPatientId()
-		  obj.name = x.getName()
-		  obj.appointmentId = x.getAppointmentId()
+		  obj.patientId = x.patientId
+		  obj.name = x.name
+		  obj.appointmentId = x.appointmentId
 		cdb.persistPatient(obj)
 		currentPatient = x
 	}
@@ -79,7 +76,7 @@ class ModelFacade private constructor(context: Context) {
 	fun searchPatientById(search: String) : PatientVO {
 		var res = PatientVO()
 		for (x in currentPatients.indices) {
-			if ( currentPatients[x].getPatientId().toString() == search)
+			if ( currentPatients[x].patientId.toString() == search)
 			res = currentPatients[x]
 		}
 		return res
@@ -210,7 +207,7 @@ class ModelFacade private constructor(context: Context) {
 	
 
 	fun listPatient(): List<PatientVO> {
-        val patients: ArrayList<Patient> = Patient.PatientAllInstances
+        val patients: ArrayList<Patient> = Patient.patientAllInstances
 		   currentPatients.clear()
 		   for (i in patients.indices) {
 			   currentPatients.add(PatientVO(patients[i]))
@@ -220,7 +217,7 @@ class ModelFacade private constructor(context: Context) {
 	}
 	
 	fun listAllPatient(): ArrayList<Patient> {
-		  val patients: ArrayList<Patient> = Patient.PatientAllInstances    
+		  val patients: ArrayList<Patient> = Patient.patientAllInstances    
 		  return patients
 	}
 			    
@@ -233,7 +230,7 @@ class ModelFacade private constructor(context: Context) {
     }
 
     fun getPatientByPK(value: String): Patient? {
-        return Patient.PatientIndex[value]
+        return Patient.patientIndex[value]
     }
     
     fun retrievePatient(value: String): Patient? {
@@ -243,7 +240,7 @@ class ModelFacade private constructor(context: Context) {
     fun allPatientPatientIds(): ArrayList<String> {
         val res: ArrayList<String> = ArrayList()
             for (x in currentPatients.indices) {
-                res.add(currentPatients[x].getPatientId())
+                res.add(currentPatients[x].patientId)
             }
         return res
     }
